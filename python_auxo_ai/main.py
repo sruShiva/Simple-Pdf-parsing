@@ -5,6 +5,8 @@ import os
 import zipfile
 from html_write import *
 
+import pandas as pd
+
 write_to_html()
 
 app = Flask(__name__,template_folder='D:\\python_auxo_ai\\template\\')
@@ -57,6 +59,7 @@ def upload():
 
         # converting to docx
         def convert_to_docx(res,content,filename):
+            data=[]
             doc = docx.Document()
             for keys in res:
                 doc.add_heading("Main Title :   " + res[keys])
@@ -66,9 +69,13 @@ def upload():
             
             # add a page break to start a new page
                 doc.add_page_break()
-                doc.save(os.path.join(output_docx, filename))
-                
-
+                mydict = { "Section":res[keys], "data" : content[keys]}
+                data.append(mydict)
+            df = pd.DataFrame.from_dict(data)
+            print(df)
+            doc.save(os.path.join(output_docx, filename))
+            csv_file=os.path.splitext(filename)[0]+".csv"
+            df.to_csv(os.path.join(output_docx, csv_file))
 
         for file in files:
                 file_path = os.path.join(output_dir, file.filename)
@@ -87,25 +94,26 @@ def upload():
 
                 # convert_to_docx(res,content,file_name)  
                 print(file_n)
+                
         zip_path = "D:\python_auxo_ai\zipfile.zip"  # Replace with the path where you want to save the zip file
         with zipfile.ZipFile(zip_path, 'w') as zip_file:
             for filename in os.listdir(output_docx):
+                print(filename)
                 file_path = os.path.join(output_docx, filename)
                 zip_file.write(file_path, arcname=filename)
+                os.unlink(output_docx+"\\" + filename)
 
 
 
 
-        download_link = f'<a href="/download"><button>Download</button></a>'
-       
-        return f'Files converted successfully!      {download_link}'
+        #download_link = f'<a href="/download"><button>Download</button></a>'
+        return send_file(zip_path, as_attachment=True,attachment_filename='converted_files.zip')  
+    
     # Send the zip file as an attachment to the client
     #return send_file(zip_path, as_attachment=True, attachment_filename='converted_files.zip')
         #return render_template("output.html", names = file_n) 
-@app.route('/download')
-def download_files():
-    zip_path = "D:\python_auxo_ai\zipfile.zip"  # Replace with the path where you saved the ZIP archive
-    return send_file(zip_path, as_attachment=True, attachment_filename='converted_files.zip') 
+
+    
   
 if __name__ == '__main__':
     app.run(debug=True)
