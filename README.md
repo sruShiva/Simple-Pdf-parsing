@@ -22,5 +22,53 @@ Solution:
    Libraries used:
    1. PyPDF2
    2. python-docx
+
+How to run the file?
+1. Download the new_file.py and save it in your system.
+2. Update the paths and run the file to see the output.
+
+Problem 2:
+
+• Develop a simple application, either locally hosted or using open-source frameworks, that
+allows users to upload multiple PDF documents.
+
+• After uploading the PDF documents, provide an option for users to submit the documents.
+
+• Upon submission, each PDF document should be divided into sections as described in
+Problem 1.
+
+• Users should be able to download the resulting output in a format of your choice.
+
+Solution:
+1. Created an api using python flask to upload mutliple documents.
+2. Converts the document to docx format and csv formats.
+3.  Gives the output as a zip file with the both outputs.
+
+
+Model working:
+
+1. Upload files using the upload button.
+
+   ![image](https://github.com/sruShiva/Auxo_ai/assets/91767610/fd85236b-5c9f-462d-89e1-6d730db89a57)
+
+2. CLick on submit button to upload button and wait for the files to convert.
+3. Once converted, the zip file with the converted files gets downloaded on your local system.
+   ![image](https://github.com/sruShiva/Auxo_ai/assets/91767610/1b303209-83e3-4eec-be7f-72c949f81936)
+4. The converted files are displayed in the folder.
+   ![image](https://github.com/sruShiva/Auxo_ai/assets/91767610/f0fc1aec-f8ca-4c0e-938e-9eb8176fb80a)
+5. Docx format helps to view the detailed contents of the file whereas csv helps to view the contents at a glance.
+
+How to run the file?
+1. Save the python_auxo_ai folder in your system.
+2. Once downloaded, run the main.py file to see the hosted server on local host.
+
+
+
+
+
+
+
+
+
    
 
