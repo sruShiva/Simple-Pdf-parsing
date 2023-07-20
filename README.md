@@ -1,4 +1,4 @@
-# Auxo_ai - Sruthi Shivaramakrishnan:
+# Auxo_ai - Sruthi Shivaramakrishnan
 
 The entire assignment is developed using python.
 
