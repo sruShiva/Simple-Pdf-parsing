@@ -1,0 +1,117 @@
+def write_to_html():
+    f = open('template/index.html', 'w')
+    
+    # the html code which will go in the file GFG.html
+    html_template = """<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Multiple Files</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        form {
+            text-align: center;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        label {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        label:hover {
+            background-color: #2980b9;
+        }
+        .file-label {
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .file-list {
+            margin: 0 auto;
+            max-width: 400px;
+            text-align: left;
+        }
+        .file-list li {
+            list-style: none;
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+        input[type="submit"] {
+            background-color: #2ecc71;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #27ae60;
+        }
+        /* Style the download link */
+        .download-button {
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #e74c3c; /* Change the background color here */
+            color: white; /* Change the text color here */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .download-button:hover {
+            background-color: #c0392b; /* Change the background color on hover here */
+        }
+    </style>
+</head>
+<body>
+    <h1>Split pdf to multiple sections</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <div class="file-label">
+            <label for="fileInput">Select Files</label>
+            <input type="file" name="file" id="fileInput" multiple>
+        </div>
+        <input type="submit" value="Upload">
+    </form>
+    <div class="file-list">
+        <p>Selected Files:</p>
+        <ul id="fileList"></ul>
+    </div>
+  
+    <script>
+        const fileInput = document.getElementById("fileInput");
+        const fileList = document.getElementById("fileList");
+
+        fileInput.addEventListener("change", () => {
+            fileList.innerHTML = "";
+            for (const file of fileInput.files) {
+                const listItem = document.createElement("li");
+                listItem.textContent = file.name;
+                fileList.appendChild(listItem);
+            }
+        });
+    </script>
+</body>
+</html>
+    """
+    
+    # writing the code into the file
+    f.write(html_template)
+
+    # close the file
+    f.close()
+
