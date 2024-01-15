@@ -1,4 +1,4 @@
-# Python based assignment
+# PDF parsing
 
 The entire assignment is developed using python.
 
