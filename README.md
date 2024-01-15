@@ -1,4 +1,4 @@
-# Auxo_ai - Sruthi Shivaramakrishnan
+# Python based assignment
 
 The entire assignment is developed using python.
 
